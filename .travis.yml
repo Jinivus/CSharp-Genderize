@@ -1,1 +1,12 @@
-CSharp-Genderize.sln
+language: csharp
+solution: CSharp-Genderize.sln
+
+
+before_deploy: "zip Release ./bin/Release/* -j"
+deploy:
+  provider: releases
+  api_key: '$GITHUB_API_KEY'
+  file: "./Release.zip"
+  skip_cleanup: true
+  on:
+    tags: true
